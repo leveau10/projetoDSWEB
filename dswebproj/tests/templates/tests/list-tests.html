@@ -1,0 +1,24 @@
+{% extends 'tests/tests-nav.html' %}
+{% load static %}
+{% block tests %}
+  <div class="tab-content container" id="nav-tabContent">
+    <div class="tab-pane fade show active tests-cards-div" id="nav-todos" role="tabpanel" aria-labelledby="nav-todos-tab">
+      <div class="row">
+
+        {% for c in tests %}
+        <div class="col-md-4 text-center">
+          <div class="card inside-card md-2 mb-2 ">
+            <div class="card-body">
+              <h5 class="card-title">{{c.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted"> {{c.get_theme_display}}</h6>
+              <div class="card">
+                <a href="{% url 'tests:test_details' c.id%}" class=" btn btn-info card-link">Acessar simulado</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock tests %}

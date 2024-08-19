@@ -1,0 +1,26 @@
+{% extends 'tests/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  {% if user.is_authenticated%}
+    {{user.name}}
+  {% endif %}
+  <div>
+    <div>
+      <h1>Bem-vindo!</h1>
+      <h2>Aqui você poderá treinar para todas as suas provas</h2>
+      <div class="acesse">
+        <h4>Acesse os nossos simulados: </h4> 
+        <a class="btn btn-primary" href="{% url 'tests:list_tests' 6 %}">Acessar Simulados</a>
+      </div>
+      <div class="cadastre-se">
+        <h5>Também quer cadastrar questões e novos simulados na plataforma?</h5>
+        <div>
+          <a class="btn btn-danger" href="{% url 'users:register'%}">Cadastre-se agora</a>
+          <p>ou <a href="{%url 'users:login'%}">entre em sua conta</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

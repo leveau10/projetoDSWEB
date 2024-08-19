@@ -1,0 +1,106 @@
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#main-navbar{
+    top: 0;
+    background-color: rgb(100, 100, 100) !important;
+}
+.main-content{
+    height: 90vh;
+}
+
+
+.acesse{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.acesse h4{
+    margin-right: 10px;
+}
+
+.cadastre-se{
+    margin-top: 50px;
+}
+
+.nav-tests-div{
+    display: flex;
+    justify-content: center;
+}
+.nav-tests-div a{
+    color: black;
+    text-decoration: none;
+}
+
+.nav-tests-div .active{
+    font-weight: bold;
+    color: rgb(0, 0, 0) !important;
+}
+/* .inside-card{
+    margin: 5px;
+    width: 350px !important;
+
+}
+
+.tests-cards-div{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+} */
+
+
+/* register-question.html */
+
+.form-choices{
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    gap: 5px;
+    font-size: large;
+    align-items:end;
+}
+
+.form-choices {
+    margin-right: 0px;
+}
+
+
+
+/* register-test.html */
+.check-box-question input[type=checkbox]{
+    width: 30px;
+    height: 30px;
+
+}
+
+
+/* list-tests.html */
+.tab-content{
+    overflow-x: hidden;
+    height: 69vh;
+}
+
+
+/* test-details.html */
+
+.question-card-header{
+    background-color: aqua !important;
+}
+
+.choice-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.radio-choice{
+    width: 20px;
+    height: 20px;
+}
+
+/*  bootstrap styles */

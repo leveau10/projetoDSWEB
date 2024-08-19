@@ -1,0 +1,54 @@
+{% extends 'tests/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>Simulados cadastrados</h1>
+        <span class="tema-atual" style="display: none;">{{tema}}</span>
+        <nav class="nav-tests">
+            <div class="nav navbar-dark bg-info nav-tests-div nav-tabs" id="nav-tab" role="tablist">
+                {%if tema < 1 or tema > 5%}
+                <button class="nav-link active links-test"><a href="{%url 'tests:list_tests' 6%}">Todos</a></button>
+                {%else%}
+                <button class="nav-link links-test"><a href="{%url 'tests:list_tests' 6%}">Todos</a></button>
+                {%endif%}
+
+                {%if tema == 1%}
+                <button class="nav-link active links-test"><a href="{%url 'tests:list_tests' 1%}">Matemática</a></button>
+                {%else%}
+                <button class="nav-link links-test"><a href="{%url 'tests:list_tests' 1%}">Matemática</a></button>
+                {%endif%}
+                
+                {%if tema == 2%}
+                <button class="nav-link active links-test"><a href="{%url 'tests:list_tests' 2%}">Ciências Humanas</a></button>
+                {%else%}
+                <button class="nav-link links-test"><a href="{%url 'tests:list_tests' 2%}">Ciências Humanas</a></button>
+                {%endif%}
+
+                {%if tema == 3%}
+                <button class="nav-link active links-test"><a href="{%url 'tests:list_tests' 3%}">Ciências da Natureza</a></button>
+                {%else%}
+                <button class="nav-link links-test"><a href="{%url 'tests:list_tests' 3%}">Ciências da Natureza</a></button>
+                {%endif%}
+
+                {%if tema == 4%}
+                <button class="nav-link active links-test"><a href="{%url 'tests:list_tests' 4%}">Linguagens e Código</a></button>
+                {%else%}
+                <button class="nav-link links-test"><a href="{%url 'tests:list_tests' 4%}">Linguagens e Código</a></button>
+                {%endif%}
+
+                {%if tema == 5%}
+                <button class="nav-link active links-test"><a href="{%url 'tests:list_tests' 5%}">Conhecimentos Gerais</a></button>
+                {%else%}
+                <button class="nav-link links-test"><a href="{%url 'tests:list_tests' 5%}">Conhecimentos Gerais</a></button>
+                {%endif%}
+            </div>
+        </nav>
+    </div>
+
+    {%block tests%}
+    
+    {%endblock tests%}
+{%endblock content%}
+
+
+
