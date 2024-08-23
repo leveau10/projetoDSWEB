@@ -3,8 +3,8 @@
 {% block tests %}
   <div class="tab-content container" id="nav-tabContent">
     <div class="tab-pane fade show active tests-cards-div" id="nav-todos" role="tabpanel" aria-labelledby="nav-todos-tab">
+      {%if tests%}
       <div class="row">
-
         {% for c in tests %}
         <div class="col-md-4 text-center">
           <div class="card inside-card md-2 mb-2 ">
@@ -19,6 +19,9 @@
         </div>
         {% endfor %}
       </div>
+      {%else%}
+      <div class="m-5">Nenhum simulado cadastrado</div>
+      {%endif%}
     </div>
   </div>
 {% endblock tests %}

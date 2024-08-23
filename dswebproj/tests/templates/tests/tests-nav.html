@@ -2,7 +2,10 @@
 {% load static %}
 {% block content %}
     <div class="container">
-        <h1>Simulados cadastrados</h1>
+        <div class="nav-tests-header">
+            <h1>Simulados cadastrados</h1>
+            <a class="btn btn-primary" href="{%url 'tests:create_test'%}">Novo simulado</a>
+        </div>
         <span class="tema-atual" style="display: none;">{{tema}}</span>
         <nav class="nav-tests">
             <div class="nav navbar-dark bg-info nav-tests-div nav-tabs" id="nav-tab" role="tablist">

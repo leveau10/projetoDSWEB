@@ -28,6 +28,13 @@ body{
     margin-top: 50px;
 }
 
+/* tests-nav.html */
+.nav-tests-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
 .nav-tests-div{
     display: flex;
     justify-content: center;
@@ -41,18 +48,6 @@ body{
     font-weight: bold;
     color: rgb(0, 0, 0) !important;
 }
-/* .inside-card{
-    margin: 5px;
-    width: 350px !important;
-
-}
-
-.tests-cards-div{
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap;
-} */
-
 
 /* register-question.html */
 

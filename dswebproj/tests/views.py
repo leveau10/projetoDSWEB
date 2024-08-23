@@ -85,8 +85,7 @@ def test_details(request, test_id):
     
 def create_test(request):
     questions = Question.objects.all()
-    
-    if request.method == 'POST':
+    if request.method == 'POST': #POST
         test_form = TestForm(request.POST)
         question_formset = QuestionSelectFormSet(request.POST)
         
@@ -100,12 +99,15 @@ def create_test(request):
                     question = Question.objects.get(id=question_id)
                     test.questions.add(question)
                     TestQuestionWeight.objects.create(test=test, question=question, weight=weight)
-            return redirect('tests:list_tests 6')  # Replace with the appropriate success URL
-    else:
-        test_form = TestForm()
-        initial_data = [{'question': q, 'question_id': q.id, 'question_title': q.title} for q in questions]
-        question_formset = QuestionSelectFormSet(initial=initial_data)
-
+            return redirect('tests:list_tests',6)  # Replace with the appropriate success URL
+    else: #GET
+        if questions:
+            test_form = TestForm()
+            initial_data = [{'question': q, 'question_id': q.id, 'question_title': q.title} for q in questions]
+            question_formset = QuestionSelectFormSet(initial=initial_data)
+        else:
+            question_formset = 0
+            test_form = TestForm()
     return render(request, 'tests/register-test.html', {
         'test_form': test_form,
         'question_formset': question_formset,

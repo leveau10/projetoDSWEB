@@ -4,33 +4,40 @@
 {% block content %}
 <div class="container">
     <h1>Registre um novo Simulado</h1>
-  <form method="post">
+    <form method="post">
 
     {% csrf_token %}
     {{ test_form|crispy}}
 
     <h3>Selecione as questões e seus respectivos pesos</h3>
+    
+    {%if question_formset != 0 %}
     {{ question_formset.management_form }}
     <table class="table table-sm">
         <thead>
-            <tr class="text-center">
-                <th>Selecione</th>
-                <th>Questão</th>
-                <th>Peso</th>
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            {% for form in question_formset %}
-                <tr>
-                    <td class="mx-0 check-box-question">{{ form.selected }}</td>
-                    <td>{{ form.question_title}}</td>
-                    <td>{{ form.weight }}</td>
-                    {{ form.question_id|as_crispy_field }} 
+                <tr class="text-center">
+                    <th>Selecione</th>
+                    <th>Questão</th>
+                    <th>Peso</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>            
-    <button class="btn btn-primary" type="submit">Create Test</button>
-  </form>
+            </thead>
+            <tbody class="text-center">
+                
+                    {% for form in question_formset %}
+                        <tr>
+                            <td class="mx-0 check-box-question">{{ form.selected }}</td>
+                            <td>{{ form.question_title}}</td>
+                            <td>{{ form.weight }}</td>
+                            {{ form.question_id|as_crispy_field }} 
+                        </tr>
+                    {% endfor %}
+            </tbody>
+        </table>            
+        <button class="btn btn-primary" type="submit">Cadastrar Simulado</button>
+    {%else%}
+        <div class="mt-5">Nenhuma questão cadastrada.</div>
+        <a class="btn btn-primary mt-2" href="{%url 'tests:register_question' %}">Registre uma questão</a>
+    {%endif%}
+</form>
 </div>
 {% endblock content %}

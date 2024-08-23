@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import inlineformset_factory, modelformset_factory
+from django.forms import inlineformset_factory
 from .models import Question, Choice, Test
 
 class ChoiceForm(forms.ModelForm):
@@ -7,8 +7,8 @@ class ChoiceForm(forms.ModelForm):
         model = Choice
         fields = ['text', 'isRight']
         labels = {
-            'text': 'Pergunta',
-            'isRight': 'Pergunta correta?',
+            'text': 'Resposta',
+            'isRight': 'Resposta correta?',
         }
 
 class QuestionForm(forms.ModelForm):
@@ -16,7 +16,7 @@ class QuestionForm(forms.ModelForm):
         model = Question
         fields = ['title']
         labels = {
-            'title': 'Título'
+            'title': 'Pergunta'
         }
 
 ChoiceFormSet = inlineformset_factory(Question, Choice, form=ChoiceForm, extra=5, can_delete=False) ##estudar o que isso faz

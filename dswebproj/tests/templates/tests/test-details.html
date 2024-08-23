@@ -6,7 +6,7 @@
 <div class="container">
     <div class="test-header">
         <h2>{{ test.title }}</h2>
-        {%if nota %}
+        {%if nota >= 0%}
         <div class="nota-card">
             <div>Nota: {{nota}}/100</div>
         <div>
