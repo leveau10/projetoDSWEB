@@ -11,6 +11,7 @@ def home(request):
 def profile(request):
     return render(request, 'tests/profile.html')
 
+@login_required()
 def register_question(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -26,7 +27,7 @@ def register_question(request):
         formset = ChoiceFormSet()
 
     context = {
-        'form': form, 
+        'form': form,
         'formset': formset
         }
 
@@ -54,7 +55,6 @@ def test_details(request, test_id):
             selected_choice_id = request.POST.get(f'question_{question.id}')
             selected_choice = get_object_or_404(Choice, pk=selected_choice_id)
 
-
             selected_choices_ids.append(selected_choice_id)
 
 
@@ -75,14 +75,15 @@ def test_details(request, test_id):
             'nota': int(nota),
             'selected_choices': selected_choices_queryset
         }
+        return render(request, 'tests/results.html', context)
     else:
         test = get_object_or_404(Test.objects.prefetch_related('questions', 'questions__choices' ), pk=test_id)
         context = {
-            'test': test
+            'test': test    
         }
-    return render(request, 'tests/test-details.html', context)
+        return render(request, 'tests/test-details.html', context)
     
-    
+@login_required()
 def create_test(request):
     questions = Question.objects.all()
     if request.method == 'POST': #POST

@@ -2,11 +2,18 @@
 {% load static %}
 {% block content %}
 
-
 <div class="container">
     <div class="test-header">
         <h2>{{ test.title }}</h2>
-        <p>Escolha uma alternativa para cada questão:</p>
+        {%if nota >= 0%}
+        <div class="nota-card">
+            <div>Nota: {{nota}}/100</div>
+        <div>
+        {%else%}
+        <div class="nota-card">
+            <div>Nota: --/100</div>
+        <div>
+        {%endif%}
     </div>
     <form method="POST" action="{% url 'tests:test_details' test.id %}">
         {% csrf_token %}
@@ -20,34 +27,28 @@
                     {% for choice in question.choices.all %}
                         {% if selected_choices%}
                             {% if choice in selected_choices and choice.isRight%}
-                                <li class="list-group-item" style="background-color: rgb(26, 201, 70);">
-                                    <input class="radio-choice" type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice_{{ choice.id }}" required="true" 
-                                    >
-                                    <label for="choice_{{ choice.id }}">{{ choice.text }}</label>
+                                <li class="list-group-item selected-choice" style="background-color: rgb(26, 201, 70)">
+                                    {{ choice.text }}
                                 </li>
                             {%elif choice in selected_choices%}
-                                <li class="list-group-item" style="background-color: rgb(173, 66, 47);">
-                                    <input class="radio-choice" type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice_{{ choice.id }}" required="true" 
-                                    >
+                                <li class="list-group-item selected-choice" style="background-color: rgb(173, 66, 47);">
+                                   
                                     <label for="choice_{{ choice.id }}">{{ choice.text }}</label>
                                 </li>
                             {%elif choice.isRight%}
                                 <li class="list-group-item" style="background-color: rgb(26, 201, 70);">
-                                    <input class="radio-choice" type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice_{{ choice.id }}" required="true" 
-                                    >
+                                    
                                     <label for="choice_{{ choice.id }}">{{ choice.text }}</label>
                                 </li>
                             {% else %}
                                 <li class="list-group-item">
-                                    <input class="radio-choice" type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice_{{ choice.id }}" required="true" 
-                                    >
+                                    
                                     <label for="choice_{{ choice.id }}">{{ choice.text }}</label>
                                 </li>
                             {% endif %}
                         {%else%}
                             <li class="list-group-item">
-                                <input class="radio-choice" type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice_{{ choice.id }}" required="true" 
-                                >
+                                
                                 <label for="choice_{{ choice.id }}">{{ choice.text }}</label>
                             </li>
                         {% endif %}
@@ -59,4 +60,3 @@
     </form>
 </div>
 {% endblock %}
-

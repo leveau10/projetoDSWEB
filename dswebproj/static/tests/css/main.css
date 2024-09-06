@@ -80,7 +80,6 @@ body{
     height: 69vh;
 }
 
-
 /* test-details.html */
 
 .question-card-header{
@@ -98,4 +97,12 @@ body{
     height: 20px;
 }
 
+/* results.html */
+
+.selected-choice{
+    border: black 5px solid !important; 
+}
+
 /*  bootstrap styles */
+
+
