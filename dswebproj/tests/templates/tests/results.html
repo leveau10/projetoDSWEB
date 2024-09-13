@@ -56,7 +56,7 @@
                 </ul>
             </div>
         {% endfor %}
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <a class="btn btn-primary" href="{%url 'tests:test_details' test.id%}">Votar novamente</a>
     </form>
 </div>
 {% endblock %}

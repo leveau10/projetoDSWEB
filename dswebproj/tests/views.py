@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import QuestionForm, ChoiceFormSet, TestForm, QuestionSelectFormSet
+from .forms import QuestionForm, ChoiceFormSet, TestForm, QuestionSelectFormSet, SearchForm
 from .models import Test, Choice, TestQuestionWeight, Question
+from django.db.models import Q
 
 def home(request):
     return render(request, 'tests/home.html')
@@ -34,15 +35,20 @@ def register_question(request):
     return render(request, 'tests/register-question.html', context)
 
 def list_tests(request, theme_id):
-    if theme_id<1 or theme_id> 5:
-        tests = Test.objects.all()
+    if request.method == 'GET':
+        if theme_id<1 or theme_id> 5:
+            tests = Test.objects.all()
+        else:
+            tests = Test.objects.filter(theme=theme_id)
     else:
-        tests = Test.objects.filter(theme=theme_id)
+        query = request.POST.get('query')
+        tests = Test.objects.filter(Q(title__icontains=query))
+    search_form = SearchForm()
     context = {
         'tests': tests,
-        'tema': theme_id
+        'tema': theme_id,
+        'search_form': search_form
     }
-
     return render(request, 'tests/list-tests.html', context )
 
 def test_details(request, test_id):

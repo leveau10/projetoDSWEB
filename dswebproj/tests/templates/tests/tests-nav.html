@@ -1,5 +1,6 @@
 {% extends 'tests/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="container">
         <div class="nav-tests-header">
@@ -7,7 +8,12 @@
             <a class="btn btn-primary" href="{%url 'tests:create_test'%}">Novo simulado</a>
         </div>
         <span class="tema-atual" style="display: none;">{{tema}}</span>
-        <nav class="nav-tests">
+        <nav class="nav-tests" >
+            <form class="mb-2 text-center" method="post", action="{%url 'tests:list_tests' 6%}">
+                {% csrf_token %}
+                {{ search_form}}
+                <button class="btn btn-primary" type="submit">Procurar</button>
+            </form>
             <div class="nav navbar-dark bg-info nav-tests-div nav-tabs" id="nav-tab" role="tablist">
                 {%if tema < 1 or tema > 5%}
                 <button class="nav-link active links-test"><a href="{%url 'tests:list_tests' 6%}">Todos</a></button>

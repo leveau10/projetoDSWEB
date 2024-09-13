@@ -43,3 +43,6 @@ class QuestionSelectForm(forms.Form):
             self.fields['question_title'].initial = question.title
 
 QuestionSelectFormSet = forms.formset_factory(QuestionSelectForm, extra=0)
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Simulado', max_length=100, required=True)
